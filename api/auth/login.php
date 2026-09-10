@@ -1,0 +1,4 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../../includes/security.php';require_once __DIR__.'/../../includes/auth.php';require_post();
+try{$identity=request_string('identity',254);$pass=request_string('password',128);if($identity===''||$pass==='')json_response(false,'Invalid login credentials.',[],422);$u=find_user_by_identity($identity);if(!$u||!password_verify($pass,$u['PASSWORD_HASH'])){usleep(200000);json_response(false,'Invalid login credentials.',[],401);}if($u['ACCOUNT_STATUS']==='PENDING')json_response(false,'Account verification is required before login.',[],403);if($u['ACCOUNT_STATUS']!=='ACTIVE')json_response(false,'This account is not currently available for login.',[],403);login_user((int)$u['USER_ID'],$u['PUBLIC_UUID'],$u['USER_TYPE']);json_response(true,'Login successful.',['user_type'=>$u['USER_TYPE']]);}catch(Throwable $e){error_log('Login: '.$e->getMessage());json_response(false,'Unable to process login right now.',[],500);}

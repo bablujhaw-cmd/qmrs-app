@@ -1,0 +1,4 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../../config/app.php';require_once __DIR__.'/../../includes/security.php';require_once __DIR__.'/../../includes/otp.php';require_once __DIR__.'/../../includes/auth.php';require_post();
+try{$id=filter_input(INPUT_POST,'user_id',FILTER_VALIDATE_INT);$type=strtoupper(request_string('otp_type',20));$u=find_user_by_id((int)$id);if(!$id||!$u)json_response(false,'Unable to process the request.',[],404);$sent=$type==='EMAIL'?(string)$u['EMAIL']:(string)$u['COUNTRY_CODE'].$u['MOBILE_NUMBER'];$otp=create_otp((int)$id,$type,$sent);$data=APP_ENV!=='production'?['development_otp'=>$otp]:[];json_response(true,'A new verification code has been generated.',$data);}catch(Throwable $e){error_log('Resend OTP: '.$e->getMessage());json_response(false,'Unable to resend the verification code.',[],500);}
