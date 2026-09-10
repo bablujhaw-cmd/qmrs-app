@@ -1,1 +1,41 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QMRS</title><link rel="stylesheet" href="/assets/css/common.css"></head><body><header><div class="container nav"><a class="brand" href="/"><span class="mark"><i></i><i></i><i></i></span><span><b>QMRS</b><small>Trusted Jobs. Verified People.</small></span></a><div class="member"><a href="/login/">Sign In</a> · <a href="/register/">Create Account</a></div></div></header><main class="page"><section class="card"><span class="eyebrow">QUALITY-FIRST EMPLOYMENT</span><h1>Trusted Jobs.<br>Verified People.</h1><p class="intro">A global-ready employment network designed around genuine candidates, genuine employers and better matching.</p><a class="submit" href="/register/">GET STARTED</a><p class="footer">Premium services · Mobile friendly · Global architecture</p></section></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - QMRS Portal</title>
+  <link rel="stylesheet" href="/assets/css/common.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Welcome Back</h1>
+        <p>Sign in to access your portal account</p>
+      </div>
+
+      <div id="alertBox" class="alert" style="display: none;"></div>
+
+      <form id="loginForm" method="POST" action="/api/auth/login.php">
+        <div class="form-group">
+          <label for="username">Username / Mobile</label>
+          <input type="text" id="username" name="username" class="form-input" placeholder="Enter username or mobile" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-primary">
+          <span>Sign In</span>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="/public/register.php">Create an Account</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
